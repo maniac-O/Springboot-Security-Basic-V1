@@ -63,7 +63,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 			System.out.println("우리는 구글과 페이스북만 지원해요!");
 		}
 		
-		
+		// User 객체에 삽입 준비
 		String provider = oAuth2UserInfo.getProvider(); // google
 		String providerId = oAuth2UserInfo.getProviderId();
 		String username = provider + "_" + providerId;
@@ -73,6 +73,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		
 		User userEntity = userRepository.findByUsername(username);
 		
+		// 자동 회원가입 실시
 		if(userEntity == null) {
 			userEntity = User.builder()
 					.username(username)
